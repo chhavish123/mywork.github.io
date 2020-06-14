@@ -1,0 +1,55 @@
+<doctype html>
+<html ng-app="myApp">
+<head>
+    <title> Upload and view </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="js/services/multipartForm.js"></script>
+    <script src="js/directives/fileModel.js"></script>
+    <script src="js/services/router.js"></script>
+    <script src="js/directives/submitController.js"></script>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $interval) {
+  $scope.theTime = new Date().toLocaleTimeString();
+  $interval(function () {
+      $scope.theTime = new Date().toLocaleTimeString();
+  }, 1000);
+});
+</script>
+<link rel="stylesheet" type="text/css" href="style.css">   
+</head>
+<body>
+<div  ng-controller="myCtrl"> 
+    <h1>Time:{{theTime}}</h1>
+</div>
+<div class="login-box">
+    <img src="avatar.png" class="avatar">
+        <h1>Upload and View</h1>
+        <form>
+  <div class="form-group">
+    <label for="name">Full Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Enter name" ng-model="customer.name">
+  </div>
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="customer.email">
+  <div class="form-group">
+    <label for="exampleInputFile">Upload File</label>
+    <input type="file" id="exampleInputFile" file-model="customer.file">
+  </div>
+<input type="Submit" name="Submit" class="btn btn-default" ng-click="Upload" value="Upload">
+    <input type="Submit" name="Submit" class="btn btn-default" ng-click="view" value="View">
+
+</form>
+</div>
+<script src="/__/firebase/7.15.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="/__/firebase/7.15.1/firebase-analytics.js"></script>
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
+</body>
+</html>
